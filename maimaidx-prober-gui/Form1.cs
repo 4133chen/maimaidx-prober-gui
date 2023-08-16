@@ -78,7 +78,6 @@ namespace maimaidx_prober_gui
                 throw ex;
             }
         }
-
         public Form1()
         {
             InitializeComponent();
