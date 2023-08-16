@@ -6,6 +6,9 @@ using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace maimaidx_prober_gui
 {
@@ -178,7 +181,6 @@ namespace maimaidx_prober_gui
             process.ErrorDataReceived += Process_ErrorDataReceived; // 处理标准错误流
             process.EnableRaisingEvents = true;
             process.Start();
-
             process.BeginOutputReadLine();
             process.BeginErrorReadLine(); // 开始异步读取标准错误流
         }
@@ -267,6 +269,8 @@ namespace maimaidx_prober_gui
             return;
         }
 
+
+
         private void StopProxyProcess()
         {
             if (process != null && !process.HasExited)
@@ -274,6 +278,7 @@ namespace maimaidx_prober_gui
                 process.Kill();
                 process = null;
             }
+            closeProxy();
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -305,6 +310,23 @@ namespace maimaidx_prober_gui
                 process.Kill();
                 process = null;
             }
+            closeProxy();
+        }
+        
+        [DllImport("wininet.dll")]
+        private static extern bool InternetSetOption(IntPtr hInternet, int dwOption, IntPtr lpBuffer, int dwBufferLength);
+        private const int INTERNET_OPTION_SETTINGS_CHANGED = 39;
+        private const int INTERNET_OPTION_REFRESH = 37;
+
+        public static bool closeProxy()
+        {
+            const string userRoot = "HKEY_CURRENT_USER";
+            const string subkey = @"Software\Microsoft\Windows\CurrentVersion\Internet Settings";
+            const string keyName = userRoot + @"\" + subkey;
+            Registry.SetValue(keyName, "ProxyEnable","0", RegistryValueKind.DWord);
+            InternetSetOption(IntPtr.Zero, INTERNET_OPTION_SETTINGS_CHANGED, IntPtr.Zero, 0);
+            InternetSetOption(IntPtr.Zero, INTERNET_OPTION_REFRESH, IntPtr.Zero, 0);
+            return (true);
         }
     }
 }
