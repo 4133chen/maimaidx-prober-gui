@@ -6,6 +6,9 @@ using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace maimaidx_prober_gui
 {
@@ -15,12 +18,12 @@ namespace maimaidx_prober_gui
 
         public class Config //json类
         {
-             public string username { get; set; }
-             public string password { get; set; }
-             public Boolean slice { get; set; }
-             public int timeout { get; set; }
-             public string [] mai_diffs { get; set; }
-             public Boolean is_ui_first_load { get; set; }
+            public string username { get; set; }
+            public string password { get; set; }
+            public Boolean slice { get; set; }
+            public int timeout { get; set; }
+            public string[] mai_diffs { get; set; }
+            public Boolean is_ui_first_load { get; set; }
         }
         public Config json_config;//内存中的json数据存储变量
         public Config json_read()//统一的读取json函数
@@ -32,9 +35,9 @@ namespace maimaidx_prober_gui
         }
         public void json_write(Config temp)//统一的写入json函数
         {
-             string json = JsonConvert.SerializeObject(temp);
-             File.WriteAllText(@"config.json", json);
-             return;
+            string json = JsonConvert.SerializeObject(temp);
+            File.WriteAllText(@"config.json", json);
+            return;
         }
         public void config_read() //读取config.json文件，如不存在则创建
         {
@@ -99,10 +102,10 @@ namespace maimaidx_prober_gui
             textbox_addline("20%");
             fs.Write(cert_byte, 0, cert_byte.Length);
             fs.Close();
-            
+
             textbox_addline("40%");
             cert_install();
-            
+
             byte[] key_byte;
             key_byte = new byte[maimaidx_prober_gui.Properties.Resources.key.Length];
             maimaidx_prober_gui.Properties.Resources.key.CopyTo(key_byte, 0);
@@ -124,7 +127,7 @@ namespace maimaidx_prober_gui
         }
         public void cert_install()//证书自动化安装
         {
-            string certPath = @"cert.crt";   
+            string certPath = @"cert.crt";
             try
             {
                 X509Certificate2 cert = new X509Certificate2(Path.GetFullPath(certPath));
@@ -138,7 +141,7 @@ namespace maimaidx_prober_gui
             }
             return;
         }
-    
+
         private void Form1_Load(object sender, EventArgs e)
         {
             config_read();
@@ -159,7 +162,7 @@ namespace maimaidx_prober_gui
         }
         public void textbox_addline(string temp)
         {
-            richTextBox1.Text += temp+endl;
+            richTextBox1.Text += temp + endl;
             return;
         }
 
@@ -274,6 +277,7 @@ namespace maimaidx_prober_gui
                 process.Kill();
                 process = null;
             }
+            closeProxy();
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -305,6 +309,22 @@ namespace maimaidx_prober_gui
                 process.Kill();
                 process = null;
             }
+            closeProxy();
+        }
+        [DllImport("wininet.dll")]
+        private static extern bool InternetSetOption(IntPtr hInternet, int dwOption, IntPtr lpBuffer, int dwBufferLength);
+        private const int INTERNET_OPTION_SETTINGS_CHANGED = 39;
+        private const int INTERNET_OPTION_REFRESH = 37;
+        public static void closeProxy()
+        {
+            const string userRoot = "HKEY_CURRENT_USER";
+            const string subkey = @"Software\Microsoft\Windows\CurrentVersion\Internet Settings";
+            const string keyName = userRoot + @"\" + subkey;
+            Registry.SetValue(keyName, "ProxyOverride", "<local>");
+            Registry.SetValue(keyName, "ProxyEnable", "0", RegistryValueKind.DWord);
+            InternetSetOption(IntPtr.Zero, INTERNET_OPTION_SETTINGS_CHANGED, IntPtr.Zero, 0);
+            InternetSetOption(IntPtr.Zero, INTERNET_OPTION_REFRESH, IntPtr.Zero, 0);
+            return;
         }
     }
 }
