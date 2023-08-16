@@ -1,0 +1,7 @@
+{
+	"username": "4133chen", 
+	"password": "11111111",
+	"slice": true, 
+  "timeout": 120, 
+  "mai_diffs": ["mas", "rem"]
+}
