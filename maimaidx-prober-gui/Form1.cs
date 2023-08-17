@@ -265,11 +265,9 @@ namespace maimaidx_prober_gui
             json_config.timeout = int.Parse(textBox4.Text);
             json_config.slice = checkBox6.Checked;
             json_write(json_config);
-            textbox_addline("保存成功");
+            MessageBox.Show("保存成功，软件将自动重启");
             return;
         }
-
-
 
         private void StopProxyProcess()
         {
@@ -283,6 +281,10 @@ namespace maimaidx_prober_gui
         private void button5_Click(object sender, EventArgs e)
         {
             save_settings();
+            Application.ExitThread();
+            Application.Exit();
+            Application.Restart();
+            Process.GetCurrentProcess().Kill();
         }
 
         private void label3_Click(object sender, EventArgs e)
