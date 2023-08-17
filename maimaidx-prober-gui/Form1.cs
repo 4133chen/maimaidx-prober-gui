@@ -170,6 +170,7 @@ namespace maimaidx_prober_gui
         private void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
+            button5.Enabled = false;
             button4.Enabled = true;
             process = new Process();
             process.StartInfo.FileName = "proxy.exe"; // 设置控制台程序的路径
@@ -306,6 +307,7 @@ namespace maimaidx_prober_gui
         {
             button4.Enabled = false;
             button1.Enabled = true;
+            button5.Enabled = true;
 
             if (process != null && !process.HasExited)
             {
@@ -329,6 +331,12 @@ namespace maimaidx_prober_gui
             InternetSetOption(IntPtr.Zero, INTERNET_OPTION_SETTINGS_CHANGED, IntPtr.Zero, 0);
             InternetSetOption(IntPtr.Zero, INTERNET_OPTION_REFRESH, IntPtr.Zero, 0);
             return (true);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
         }
     }
 }

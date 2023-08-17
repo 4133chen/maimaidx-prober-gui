@@ -9,3 +9,4 @@ J:\vs工程\Repos\maimaidx_prober_gui\maimaidx-prober-gui\obj\Release\maimaidx-p
 J:\vs工程\Repos\maimaidx_prober_gui\maimaidx-prober-gui\obj\Release\maimaidx-prober-gui.csproj.CopyComplete
 J:\vs工程\Repos\maimaidx_prober_gui\maimaidx-prober-gui\obj\Release\maimaidx-prober-gui.exe
 J:\vs工程\Repos\maimaidx_prober_gui\maimaidx-prober-gui\obj\Release\maimaidx-prober-gui.pdb
+J:\vs工程\Repos\maimaidx_prober_gui\maimaidx-prober-gui\obj\Release\maimaidx_prober_gui.Form2.resources
