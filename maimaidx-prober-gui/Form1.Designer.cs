@@ -147,7 +147,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.button1.Location = new System.Drawing.Point(359, 745);
+            this.button1.Location = new System.Drawing.Point(359, 619);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(73, 30);
             this.button1.TabIndex = 10;
@@ -159,7 +159,7 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.button2.Location = new System.Drawing.Point(394, 603);
+            this.button2.Location = new System.Drawing.Point(394, 477);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(118, 30);
             this.button2.TabIndex = 11;
@@ -171,7 +171,7 @@
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.button3.Location = new System.Drawing.Point(438, 745);
+            this.button3.Location = new System.Drawing.Point(438, 619);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(73, 30);
             this.button3.TabIndex = 12;
@@ -286,7 +286,7 @@
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 8.5F);
-            this.groupBox1.Location = new System.Drawing.Point(12, 594);
+            this.groupBox1.Location = new System.Drawing.Point(12, 468);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(278, 181);
             this.groupBox1.TabIndex = 23;
@@ -304,7 +304,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(13, 13);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(499, 575);
+            this.richTextBox1.Size = new System.Drawing.Size(499, 449);
             this.richTextBox1.TabIndex = 24;
             this.richTextBox1.Text = "";
             // 
@@ -313,7 +313,7 @@
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.Enabled = false;
             this.button4.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.button4.Location = new System.Drawing.Point(359, 709);
+            this.button4.Location = new System.Drawing.Point(359, 583);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(73, 30);
             this.button4.TabIndex = 25;
@@ -325,7 +325,7 @@
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button6.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.button6.Location = new System.Drawing.Point(439, 639);
+            this.button6.Location = new System.Drawing.Point(439, 513);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(73, 30);
             this.button6.TabIndex = 26;
@@ -337,7 +337,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 787);
+            this.ClientSize = new System.Drawing.Size(524, 661);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.richTextBox1);
@@ -348,9 +348,12 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(500, 600);
             this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "舞萌 DX更新器";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
