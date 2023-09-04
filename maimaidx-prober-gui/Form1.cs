@@ -338,5 +338,10 @@ namespace maimaidx_prober_gui
             Form2 form2 = new Form2();
             form2.Show();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.diving-fish.com/maimaidx/prober/");
+        }
     }
 }
