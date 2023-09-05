@@ -54,24 +54,6 @@ namespace maimaidx_prober_gui
             json_config = json_read();
             return;
         }
-        public void Base64StringToFile(string base64String, string path)//base64转文件
-        {
-            try
-            {
-                using (MemoryStream stream = new MemoryStream(Convert.FromBase64String(base64String)))
-                {
-                    using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write))
-                    {
-                        byte[] b = stream.ToArray();
-                        fs.Write(b, 0, b.Length);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         public Form1()
         {
             InitializeComponent();
