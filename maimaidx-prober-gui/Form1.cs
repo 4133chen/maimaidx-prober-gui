@@ -35,19 +35,13 @@ namespace maimaidx_prober_gui
         }
         public void json_write(Config temp)//统一的写入json函数
         {
-             string json = JsonConvert.SerializeObject(temp);
-             File.WriteAllText(@"config.json", json);
-             return;
+            string json = JsonConvert.SerializeObject(temp);
+            File.WriteAllText(@"config.json", json);
+            return;
         }
         public void config_read() //读取config.json文件，如不存在则创建
         {
-
-            try
-            {
-                FileStream f = new FileStream("config.json", FileMode.Open, FileAccess.Read, FileShare.Read);
-                f.Close();
-            }
-            catch (FileNotFoundException)
+            if(!File.Exists("config.json"))
             {
                 Config temp = new Config();
                 temp.username = "请填入查分器用户名";
@@ -57,10 +51,7 @@ namespace maimaidx_prober_gui
                 temp.mai_diffs = new string[5];
                 json_write(temp);
             }
-            finally
-            {
-                json_config = json_read();
-            }
+            json_config = json_read();
             return;
         }
         public void Base64StringToFile(string base64String, string path)//base64转文件
