@@ -142,9 +142,13 @@ namespace maimaidx_prober_gui
         private Process process;
         private void button1_Click(object sender, EventArgs e)
         {
+            save_settings();
+
+            richTextBox1.Text = "";
             button1.Enabled = false;
-            button5.Enabled = false;
             button4.Enabled = true;
+            groupBox1.Enabled = false;
+
             process = new Process();
             process.StartInfo.FileName = "proxy.exe"; // 设置控制台程序的路径
             process.StartInfo.UseShellExecute = false;
@@ -231,15 +235,12 @@ namespace maimaidx_prober_gui
         }
         public void save_settings()
         {
-            ThreadStart threadStart = new ThreadStart(get_level);
-            Thread temp_thread = new Thread(threadStart);
-            temp_thread.Start();
+            get_level();
             json_config.username = textBox2.Text;
             json_config.password = textBox3.Text;
             json_config.timeout = int.Parse(textBox4.Text);
             json_config.slice = checkBox6.Checked;
             json_write(json_config);
-            MessageBox.Show("保存成功，软件将自动重启");
             return;
         }
 
@@ -255,10 +256,7 @@ namespace maimaidx_prober_gui
         private void button5_Click(object sender, EventArgs e)
         {
             save_settings();
-            Application.ExitThread();
-            Application.Exit();
-            Application.Restart();
-            Process.GetCurrentProcess().Kill();
+            MessageBox.Show("保存成功");
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -280,7 +278,7 @@ namespace maimaidx_prober_gui
         {
             button4.Enabled = false;
             button1.Enabled = true;
-            button5.Enabled = true;
+            groupBox1.Enabled = true;
 
             if (process != null && !process.HasExited)
             {
