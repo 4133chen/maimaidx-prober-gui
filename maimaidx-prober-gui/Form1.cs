@@ -95,7 +95,6 @@ namespace maimaidx_prober_gui
             fs.Write(proxy_byte, 0, proxy_byte.Length);
             fs.Close();
             textbox_addline("100%");
-            MessageBox.Show("程序初次加载完成");
             textbox_addline("成功");
         }
         public void cert_install()//证书自动化安装

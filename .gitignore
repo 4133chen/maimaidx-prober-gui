@@ -339,4 +339,5 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-maimaidx-prober-gui/bin/Release
+maimaidx-prober-gui/bin/
+maimaidx-prober-gui/obj/
